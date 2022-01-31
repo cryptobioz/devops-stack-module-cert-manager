@@ -19,9 +19,9 @@ variable "namespace" {
   default = "cert-manager"
 }
 
-variable "profiles" {
+variable "extra_yaml" {
   type    = list(string)
-  default = ["default"]
+  default = []
 }
 
 #######################
