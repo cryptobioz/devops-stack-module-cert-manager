@@ -12,6 +12,6 @@ cert-manager:
               region: ${aws_default_region}
           selector:
             dnsZones:
-              - ${base_domain}
+              - ${cluster_info.base_domain}
         - http01:
             ingress: {}
