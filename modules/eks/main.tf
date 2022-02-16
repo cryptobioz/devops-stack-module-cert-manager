@@ -75,7 +75,7 @@ module "cert-manager" {
   base_domain      = var.base_domain
   argocd_namespace = var.argocd_namespace
 
-  namespace      = var.namespace
+  namespace = var.namespace
 
   extra_yaml = concat([templatefile("${path.module}/values.tmpl.yaml", {
     assumable_role_arn = var.base_domain == null ? "" : module.iam_assumable_role_cert_manager.0.iam_role_arn
