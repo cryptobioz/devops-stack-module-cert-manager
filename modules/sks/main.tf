@@ -7,7 +7,5 @@ module "cert-manager" {
 
   namespace = var.namespace
 
-  extra_yaml = concat([templatefile("${path.module}/values.tmpl.yaml", {
-    router_pool_id = var.router_pool_id
-  })], var.extra_yaml)
+  helm_values_overrides = concat(local.helm_values_overrides, var.helm_values_overrides)
 }
