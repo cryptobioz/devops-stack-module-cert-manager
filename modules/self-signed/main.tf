@@ -30,8 +30,10 @@ module "cert-manager" {
 
   namespace = var.namespace
 
-  extra_yaml = concat([templatefile("${path.module}/values.tmpl.yaml", {
-    root_cert = base64encode(tls_self_signed_cert.root.cert_pem)
-    root_key  = base64encode(tls_private_key.root.private_key_pem)
-  })], var.extra_yaml)
+  helm_values = concat([{
+    cert-manager = {
+      tlsCert = base64encode(tls_self_signed_cert.root.cert_pem)
+      tlsKey  = base64encode(tls_self_signed_cert.root.private_key_pem)
+    }
+  }], var.helm_values)
 }

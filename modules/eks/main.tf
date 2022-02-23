@@ -77,9 +77,5 @@ module "cert-manager" {
 
   namespace = var.namespace
 
-  extra_yaml = concat([templatefile("${path.module}/values.tmpl.yaml", {
-    assumable_role_arn = var.base_domain == null ? "" : module.iam_assumable_role_cert_manager.0.iam_role_arn
-    aws_default_region = data.aws_region.current.name
-    base_domain        = var.base_domain
-  })], var.extra_yaml)
+  helm_values = concat(local.helm_values, var.helm_values)
 }
