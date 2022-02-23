@@ -19,8 +19,8 @@ variable "namespace" {
   default = "cert-manager"
 }
 
-variable "helm_values_overrides" {
-  description = "Helm values overrides, passed as a list of HCL structures."
+variable "helm_values" {
+  description = "Helm values, passed as a list of HCL structures."
   type        = any
   default     = []
 }

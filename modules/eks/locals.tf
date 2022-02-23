@@ -1,7 +1,7 @@
 locals {
   assumable_role_arn = var.base_domain == null ? "" : module.iam_assumable_role_cert_manager.0.iam_role_arn
 
-  helm_values_overrides = [{
+  helm_values = [{
     cert-manager = {
       serviceAccount = {
         annotations = {

@@ -1,5 +1,5 @@
 locals {
-  helm_values_overrides = [{
+  helm_values = [{
     cert-manager = {
       clusterIssuers = {
         letsencrypt = {

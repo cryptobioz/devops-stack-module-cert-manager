@@ -77,5 +77,5 @@ module "cert-manager" {
 
   namespace = var.namespace
 
-  helm_values_overrides = concat(local.helm_values_overrides, var.helm_values_overrides)
+  helm_values = concat(local.helm_values, var.helm_values)
 }

@@ -1,5 +1,5 @@
 locals {
-  helm_values_overrides = [{
+  helm_values = [{
     cert-manager = {
       azureIdentity = {
         resourceID = azurerm_user_assigned_identity.cert_manager.id
