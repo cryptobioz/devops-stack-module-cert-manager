@@ -14,7 +14,7 @@ locals {
           solvers = [
             {
               dns01 = {
-                azuredns = {
+                azureDNS = {
                   subscriptionID    = split("/", data.azurerm_subscription.primary.id)[2]
                   resourceGroupName = data.azurerm_resource_group.this.name
                   hostedZoneName    = var.base_domain
