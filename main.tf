@@ -64,7 +64,7 @@ resource "argocd_application" "this" {
     ignore_difference {
       group = "admissionregistration.k8s.io"
       kind = "ValidatingWebhookConfiguration"
-      name = "admissionregistration.k8s.io"
+      name = "cert-manager-webhook"
       json_pointers = ["/webhooks/0/namespaceSelector/matchExpressions/2"]
     }
 
