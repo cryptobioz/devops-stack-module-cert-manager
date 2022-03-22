@@ -59,6 +59,13 @@ resource "argocd_application" "this" {
       namespace = var.namespace
     }
 
+    ignore_difference {
+      group = "admissionregistration.k8s.io"
+      kind = "ValidatingWebhookConfiguration"
+      name = "admissionregistration.k8s.io"
+      jsonPointers = ["/webhooks/0/namespaceSelector/matchExpressions/2"]
+    }
+
     sync_policy {
       automated = {
         allow_empty = false
