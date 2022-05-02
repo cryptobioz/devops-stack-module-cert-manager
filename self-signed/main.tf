@@ -36,4 +36,6 @@ module "cert-manager" {
       tlsKey = base64encode(tls_private_key.root.private_key_pem)
     }
   }], var.helm_values)
+
+  dependency_ids = var.dependency_ids
 }
