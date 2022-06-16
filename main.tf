@@ -37,7 +37,7 @@ resource "argocd_project" "this" {
 }
 
 data "utils_deep_merge_yaml" "values" {
-  input = [for i in var.helm_values: yamlencode(i)]
+  input = [for i in var.helm_values : yamlencode(i)]
 }
 
 resource "argocd_application" "this" {
@@ -47,7 +47,7 @@ resource "argocd_application" "this" {
   }
 
   wait = true
-  
+
   spec {
     project = argocd_project.this.metadata.0.name
 
@@ -66,9 +66,9 @@ resource "argocd_application" "this" {
     }
 
     ignore_difference {
-      group = "admissionregistration.k8s.io"
-      kind = "ValidatingWebhookConfiguration"
-      name = "cert-manager-webhook"
+      group         = "admissionregistration.k8s.io"
+      kind          = "ValidatingWebhookConfiguration"
+      name          = "cert-manager-webhook"
       json_pointers = ["/webhooks/0/namespaceSelector/matchExpressions/2"]
     }
 
@@ -80,7 +80,7 @@ resource "argocd_application" "this" {
       }
 
       retry {
-        limit   = "5"
+        limit = "5"
         backoff = {
           duration     = "30s"
           max_duration = "2m"

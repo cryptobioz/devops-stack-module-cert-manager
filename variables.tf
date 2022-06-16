@@ -7,8 +7,10 @@ variable "cluster_name" {
 }
 
 variable "base_domain" {
-  type = string
+  description = "Principal default domain"
+  type        = string
 }
+
 
 variable "argocd_namespace" {
   type = string
