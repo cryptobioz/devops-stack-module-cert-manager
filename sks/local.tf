@@ -24,7 +24,7 @@ locals {
                 matchExpressions = [
                   {
                     key      = "node.exoscale.net/nodepool-id"
-                    operator = NotIn
+                    operator = "NotIn"
                     values   = [var.router_pool_id]
                   }
                 ]
@@ -43,7 +43,7 @@ locals {
                   matchExpressions = [
                     {
                       key      = "node.exoscale.net/nodepool-id"
-                      operator = NotIn
+                      operator = "NotIn"
                       values   = [var.router_pool_id]
                     }
                   ]
@@ -63,7 +63,7 @@ locals {
                   matchExpressions = [
                     {
                       key      = "node.exoscale.net/nodepool-id"
-                      operator = NotIn
+                      operator = "NotIn"
                       values   = [var.router_pool_id]
                     }
                   ]
