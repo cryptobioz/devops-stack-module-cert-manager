@@ -29,6 +29,7 @@ module "cert-manager" {
 
   namespace = var.namespace
 
+  app_skip_crds = var.app_skip_crds
   app_autosync = var.app_autosync
 
   helm_values = concat([{

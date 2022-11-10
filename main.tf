@@ -1,5 +1,10 @@
 locals {
   autosync = var.app_autosync ? { "allow_empty" = false, "prune" = true, "self_heal" = true } : {}
+  helm_values = [{
+    "cert-manager" = {
+      "installCRDs" = !var.app_skip_crds
+    }
+  }]
 }
 
 resource "null_resource" "dependencies" {
@@ -41,7 +46,7 @@ resource "argocd_project" "this" {
 }
 
 data "utils_deep_merge_yaml" "values" {
-  input = [for i in var.helm_values : yamlencode(i)]
+  input = [for i in concat(local.helm_values, var.helm_values) : yamlencode(i)]
 }
 
 resource "argocd_application" "this" {
@@ -60,6 +65,7 @@ resource "argocd_application" "this" {
       path            = "charts/cert-manager"
       target_revision = var.target_revision
       helm {
+        skip_crds = var.app_skip_crds
         values = data.utils_deep_merge_yaml.values.output
       }
     }
