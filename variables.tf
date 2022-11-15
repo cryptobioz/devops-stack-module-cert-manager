@@ -21,6 +21,16 @@ variable "namespace" {
   default = "cert-manager"
 }
 
+variable "app_skip_crds" {
+  type = bool
+  default = false
+}
+
+variable "app_autosync" {
+  type = bool
+  default = false
+}
+
 variable "helm_values" {
   description = "Helm values, passed as a list of HCL structures."
   type        = any
