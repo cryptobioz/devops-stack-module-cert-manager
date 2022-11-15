@@ -29,6 +29,8 @@ module "cert-manager" {
 
   namespace = var.namespace
 
+  app_autosync = var.app_autosync
+
   helm_values = concat([{
     cert-manager = {
       tlsCrt = base64encode(tls_self_signed_cert.root.cert_pem)
