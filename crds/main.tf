@@ -27,5 +27,9 @@ locals {
 
 resource "kubernetes_manifest" "crds" {
   for_each = local.crds
-  manifest = merge({ for k, v in each.value : k => v if k != "status" }, { "metadata" = { for k, v in each.value.metadata : k => v if k != "creationTimestamp" } })
+  manifest = merge(
+    { for k, v in each.value : k => v if k != "status"},
+    { "metadata" = { for k, v in each.value.metadata : k => v if k != "creationTimestamp" } },
+    { "metadata" = { for k, v in each.value.metadata : k => v if k != "finalizers" } }
+  )
 }
