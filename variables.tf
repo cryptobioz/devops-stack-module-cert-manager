@@ -27,8 +27,16 @@ variable "app_skip_crds" {
 }
 
 variable "app_autosync" {
-  type = bool
-  default = false
+  type = object({
+    allow_empty = optional(bool)
+    prune       = optional(bool)
+    self_heal   = optional(bool)
+  })
+  default = {
+    allow_empty = false
+    prune       = true
+    self_heal   = true
+  }
 }
 
 variable "helm_values" {
