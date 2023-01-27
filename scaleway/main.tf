@@ -9,5 +9,8 @@ module "cert-manager" {
 
   helm_values = concat(local.helm_values, var.helm_values)
 
+  app_skip_crds = var.app_skip_crds
+  app_autosync  = var.app_autosync
+
   dependency_ids = var.dependency_ids
 }
